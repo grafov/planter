@@ -8,13 +8,13 @@ entity "{{ .Name }}" {
 {{- end }}
 {{- range .Columns }}
   {{- if .IsPrimaryKey }}
-  + {{ .Name }} [PK]{{- if .Comment.Valid }} : {{ .Comment.String }}{{- end }}
+  {{ printf "+ [PK] %-33s" .Name }} {{ printf "\t\t%s" .DataType }} {{- if .Comment.Valid }} : {{ .Comment.String }}{{- end }}
   {{- end }}
 {{- end }}
   --
 {{- range .Columns }}
   {{- if not .IsPrimaryKey }}
-  {{ .Name }} {{- if .Comment.Valid }} : {{ .Comment.String }}{{- end }}
+  {{ printf "%-40s" .Name }} {{ printf "\t\t%s" .DataType }} {{- if .Comment.Valid }} : {{ .Comment.String }}{{- end }}
   {{- end }}
 {{- end }}
 }
